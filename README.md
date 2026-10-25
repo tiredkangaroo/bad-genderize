@@ -35,7 +35,8 @@ docker compose up --build
 
 The LLM proxy is documented at `http://localhost:8080/llms.txt`. It speaks the
 OpenAI Chat Completions protocol with base URL `http://localhost:8080/v1` and
-requires no caller API key.
+**requires an API key** sent as a Bearer token (`Authorization: Bearer sk-gw-…`).
+Set it via `LLM_API_KEY`.
 
 ## Configuration
 
@@ -52,7 +53,7 @@ Everything is read from the environment (see `.env.example`):
 | `CACHE_TTL` | `0` | Cache entry lifetime (`0` = forever) |
 | `LLM_PROXY_URL` | `http://localhost:8080/v1` | OpenAI-compatible base URL (the part before `/chat/completions`) |
 | `LLM_MODEL` | `gpt-4o-mini` | Model id sent to the proxy |
-| `LLM_API_KEY` | *(empty)* | Optional bearer token (your proxy needs none) |
+| `LLM_API_KEY` | *(empty)* | Bearer API key for the proxy (required by the gateway) |
 | `LLM_TIMEOUT` | `30s` | Per-call timeout to the LLM |
 
 > **The LLM proxy URL is fully configurable** (`LLM_PROXY_URL`) so you can point
