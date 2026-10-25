@@ -1,0 +1,6 @@
+# Binary
+/gender-api
+/bad-genderize
+
+# Env
+.env
