@@ -18,6 +18,12 @@ func newGenderServer(llm GenderClassifier, cache Cache, ttl time.Duration) *gend
 }
 
 func (s *genderServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	// Liveness probe used by Docker HEALTHCHECK and CI.
+	if r.URL.Path == "/healthz" && r.Method == http.MethodGet {
+		writeJSON(w, http.StatusOK, map[string]string{"status": "ok"})
+		return
+	}
+
 	if r.URL.Path != "/api/v1/gender" {
 		http.NotFound(w, r)
 		return

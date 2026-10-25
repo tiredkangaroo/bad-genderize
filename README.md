@@ -64,6 +64,7 @@ Everything is read from the environment (see `.env.example`):
 - `GET /api/v1/gender?name=<name>` → `200 {"gender":"male|female","confidence":0.0..1.0}`
 - Missing/empty `name` → `400 {"error":"..."}`
 - LLM failure → `502 {"error":"..."}`
+- `GET /healthz` → `200 {"status":"ok"}` (liveness)
 
 ## Tests
 
